@@ -1,0 +1,505 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\dto\\productfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\dto\\productfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\migrations\\20251014144320_addproductproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\migrations\\20251014144320_addproductproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\admin\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\admin\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\models\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\ecomapi.entity.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\ecomapi.entity.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\dto\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\dto\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\admin\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\admin\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\setupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\setupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\admin\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\admin\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\securityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\securityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\isecurityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\isecurityservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\admin\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\admin\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\dto\\responsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\dto\\responsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B89C8887-16C9-4EA4-97B0-6FA2574C1CEA}|EComApi\\EComApi.csproj|solutionrelative:ecomapi\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.services\\services\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D159BEF8-7EC8-4557-AD02-298DB8E36614}|EComApi.Services\\EComApi.Services.csproj|solutionrelative:ecomapi.services\\services\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|d:\\my projects\\apexchrono\\serverside\\ecomapi\\ecomapi.entity\\migrations\\20251014150709_seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB76E090-789E-4701-A95D-F384A459BE19}|EComApi.Entity\\EComApi.Entity.csproj|solutionrelative:ecomapi.entity\\migrations\\20251014150709_seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductFilterDto.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\DTO\\ProductFilterDto.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\DTO\\ProductFilterDto.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\DTO\\ProductFilterDto.cs",
+              "RelativeToolTip": "EComApi.Entity\\DTO\\ProductFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:16:44.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20251014144320_AddProductProperties.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Migrations\\20251014144320_AddProductProperties.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Migrations\\20251014144320_AddProductProperties.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Migrations\\20251014144320_AddProductProperties.cs",
+              "RelativeToolTip": "EComApi.Entity\\Migrations\\20251014144320_AddProductProperties.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T14:43:20.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "20251014150709_seedData.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Migrations\\20251014150709_seedData.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Migrations\\20251014150709_seedData.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Migrations\\20251014150709_seedData.cs",
+              "RelativeToolTip": "EComApi.Entity\\Migrations\\20251014150709_seedData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T15:07:10.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\appsettings.json",
+              "RelativeDocumentMoniker": "EComApi\\appsettings.json",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\appsettings.json",
+              "RelativeToolTip": "EComApi\\appsettings.json",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAQwCIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-07T07:00:54.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Program.cs",
+              "RelativeDocumentMoniker": "EComApi\\Program.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Program.cs",
+              "RelativeToolTip": "EComApi\\Program.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAAAB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T06:53:32.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\ProductService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\ProductService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\ProductService.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAmwM0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T11:54:50.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\PaymentService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:23:49.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAiwEoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T11:55:03.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Products.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\Products.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Models\\Products.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\Products.cs",
+              "RelativeToolTip": "EComApi.Entity\\Models\\Products.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAYwCYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T08:41:38.879Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\ProductsController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\Admin\\ProductsController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\ProductsController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\Admin\\ProductsController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAhwEQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T07:03:33.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EComApi.Entity.csproj",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\EComApi.Entity.csproj",
+              "RelativeDocumentMoniker": "EComApi.Entity\\EComApi.Entity.csproj",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\EComApi.Entity.csproj",
+              "RelativeToolTip": "EComApi.Entity\\EComApi.Entity.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-14T14:14:14.218Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\IProductService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\IProductService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\IProductService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\IProductService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T11:54:40.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OrderDto.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\DTO\\OrderDto.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\DTO\\OrderDto.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\DTO\\OrderDto.cs",
+              "RelativeToolTip": "EComApi.Entity\\DTO\\OrderDto.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T14:08:50.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\DashboardController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\Admin\\DashboardController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\DashboardController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\Admin\\DashboardController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAMwEkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T07:28:01.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\OrderService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\OrderService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\OrderService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAMwDAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:27:23.999Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CartService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\CartService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\CartService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\CartService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\CartService.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAMwLEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:27:07.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T15:19:34.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Models\\CartItem.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\CartItem.cs",
+              "RelativeToolTip": "EComApi.Entity\\Models\\CartItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T08:23:43.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\OrderItem.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Models\\OrderItem.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\OrderItem.cs",
+              "RelativeToolTip": "EComApi.Entity\\Models\\OrderItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T08:41:23.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "RoleService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\RoleService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\RoleService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\RoleService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\RoleService.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwDQAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T05:53:44.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Models\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "EComApi.Entity\\Models\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA6wCAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T11:31:53.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\OrdersController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\Admin\\OrdersController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\OrdersController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\Admin\\OrdersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T07:20:19.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SetupController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\SetupController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\SetupController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\SetupController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\SetupController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T06:49:38.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\AdminController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\Admin\\AdminController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\Admin\\AdminController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\Admin\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T06:54:59.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ISecurityService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\ISecurityService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\ISecurityService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\ISecurityService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\ISecurityService.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAvwA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T15:25:25.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SecurityService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\SecurityService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\SecurityService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\SecurityService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\SecurityService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T15:21:19.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "EComApi\\Controllers\\CartController.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi\\Controllers\\CartController.cs",
+              "RelativeToolTip": "EComApi\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T15:19:37.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ResponseDto.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\DTO\\ResponseDto.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\DTO\\ResponseDto.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\DTO\\ResponseDto.cs",
+              "RelativeToolTip": "EComApi.Entity\\DTO\\ResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T15:25:01.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "EComApi.Entity\\Models\\Order.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Entity\\Models\\Order.cs",
+              "RelativeToolTip": "EComApi.Entity\\Models\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T08:41:01.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IRoleService.cs",
+              "DocumentMoniker": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\IRoleService.cs",
+              "RelativeDocumentMoniker": "EComApi.Services\\Services\\IRoleService.cs",
+              "ToolTip": "D:\\My Projects\\ApexChrono\\ServerSide\\EComApi\\EComApi.Services\\Services\\IRoleService.cs",
+              "RelativeToolTip": "EComApi.Services\\Services\\IRoleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T05:51:22.129Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

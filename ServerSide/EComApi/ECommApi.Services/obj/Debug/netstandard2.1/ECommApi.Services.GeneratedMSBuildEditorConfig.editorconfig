@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = ECommApi.Services
+build_property.ProjectDir = D:\My Projects\c#\practice\EComApi\ECommApi.Services\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 
