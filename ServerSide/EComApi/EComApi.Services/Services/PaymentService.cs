@@ -1,6 +1,6 @@
 ﻿
 using EComApi.Common.Common.DTO;
-using EComApi.Entity.DTO;
+using EComApi.Entity.DTO.Payment;
 using EComApi.Entity.Models;
 using Microsoft.Extensions.Configuration;
 using Razorpay.Api;

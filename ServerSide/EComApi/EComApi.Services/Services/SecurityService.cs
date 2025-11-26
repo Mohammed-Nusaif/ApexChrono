@@ -1,7 +1,6 @@
 ﻿using EComApi.Common.Common.DTO;
-using EComApi.Entity.DTO;
+using EComApi.Entity.DTO.Security;
 using EComApi.Entity.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -31,6 +30,16 @@ namespace EComApi.Services.Services
                 response.Errors.Add(new Error { ErrorCode = 101, ErrorMessage = "User not found" });
                 return response;
             }
+            // 🔥 BLOCKED USER CHECK (add this)
+            if (!user.IsActive)
+            {
+                response.Errors.Add(new Error
+                {
+                    ErrorCode = 103,
+                    ErrorMessage = "User is blocked by admin"
+                });
+                return response;
+            }
 
             bool resultResponse = await _userManager.CheckPasswordAsync(user, login.Password);
 
@@ -42,6 +51,7 @@ namespace EComApi.Services.Services
                 ResponseDto userResponse = new()
                 {
                     UserId = user.Id,
+                    Email = user.Email,
                     UserName = user.UserName,
                     FullName = user.FullName,
                     Address = user.Address,
@@ -67,6 +77,7 @@ namespace EComApi.Services.Services
             {
                 UserName = request.UserName,
                 FullName = request.FullName,
+                Email = request.Email,
                 Address = request.Address,
                 PhoneNumber = request.PhoneNumber,
             };
@@ -75,9 +86,13 @@ namespace EComApi.Services.Services
 
             if (resultResponse.Succeeded)
             {
+                // 🔥 Assign default role "Customer"
+                await _userManager.AddToRoleAsync(user, "Customer");
+
                 ResponseDto userResponse = new()
                 {
                     UserId = user.Id,
+                    Email = user.Email,
                     UserName = user.UserName,
                     FullName = user.FullName,
                     Address = user.Address,

@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EComApi.Entity.Models
@@ -8,25 +7,29 @@ namespace EComApi.Entity.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string UserId { get; set; }
-        [ForeignKey("UserId")]
+
+        [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; }
 
-        public DateTime CreatedAt {  get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // Navigation property
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        // ✅ Navigation property
         public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
 
-        // Calculated property for total amount
+        // ✅ Computed property for total amount
         [NotMapped]
-        public decimal TotalAmount
+        public decimal TotalAmount =>
+            CartItems?.Sum(item => item.Quantity * item.UnitPrice) ?? 0;
+
+        // ✅ Optional helper for updating timestamps automatically
+        public void UpdateTimestamps()
         {
-            get
-            {
-                return CartItems?.Sum(item => item.Quantity * item.Products.Price) ?? 0;
-            }
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 }

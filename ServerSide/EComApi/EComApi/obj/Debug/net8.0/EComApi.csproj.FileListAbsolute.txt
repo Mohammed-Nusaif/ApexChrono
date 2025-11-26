@@ -345,6 +345,7 @@ D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.As
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.csproj.CoreCompileInputs.cache
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.MvcApplicationPartsAssemblyInfo.cs
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.MvcApplicationPartsAssemblyInfo.cache
+D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.sourcelink.json
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\rjimswa.dswa.cache.json
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -360,3 +361,4 @@ D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\refint\ECo
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.pdb
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\EComApi.genruntimeconfig.cache
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\obj\Debug\net8.0\ref\EComApi.dll
+D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi\bin\Debug\net8.0\EComApi.staticwebassets.runtime.json

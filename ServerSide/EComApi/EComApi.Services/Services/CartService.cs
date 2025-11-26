@@ -1,12 +1,7 @@
 ﻿using EComApi.Common.Common.DTO;
-using EComApi.Entity.DTO;
+using EComApi.Entity.DTO.Cart;
 using EComApi.Entity.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EComApi.Services.Services
 {
@@ -18,79 +13,120 @@ namespace EComApi.Services.Services
         {
             _context = context;
         }
+
+        // ✅ Get or create user cart
         public async Task<ShoppingCart> GetOrCreateCartAsync(string userId)
         {
             var cart = await _context.ShoppingCart
-                        .Include(c => c.CartItems)
-                        .ThenInclude(ci => ci.Products)
-                        .FirstOrDefaultAsync(c => c.UserId == userId);
+                .Include(c => c.CartItems)
+                    .ThenInclude(ci => ci.Products)
+                .Include(c => c.CartItems)
+                    .ThenInclude(ci => ci.ProductVariant)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
             if (cart == null)
             {
                 cart = new ShoppingCart
                 {
                     UserId = userId,
                     CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
                 };
                 _context.ShoppingCart.Add(cart);
                 await _context.SaveChangesAsync();
             }
+
             return cart;
         }
+
+        // ✅ Get user cart (DTO mapped)
         public async Task<ShoppingCartDto> GetUserCartAsync(string userId)
         {
             var cart = await _context.ShoppingCart
-                       .Include(c => c.CartItems)
-                        .ThenInclude(ci => ci.Products)
-                        .FirstOrDefaultAsync(c => c.UserId == userId);
-            if (cart == null) {
-                return new ShoppingCartDto { UserId = userId };
-            }
-            return MapToCartDto(cart);
+                .Include(c => c.CartItems)
+                    .ThenInclude(ci => ci.Products)
+                .Include(c => c.CartItems)
+                    .ThenInclude(ci => ci.ProductVariant)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            return cart == null ? new ShoppingCartDto { UserId = userId } : MapToCartDto(cart);
         }
 
-
+        // ✅ Add to cart (with variant logic)
         public async Task<Result<ShoppingCartDto>> AddToCartAsync(string userId, AddToCartDto addToCartDto)
         {
             var result = new Result<ShoppingCartDto>();
-            // Validate product exists and has stock
+
             var product = await _context.Products.FindAsync(addToCartDto.ProductId);
-            if (product == null) {
+            if (product == null)
+            {
                 result.Errors.Add(new Error { ErrorCode = 201, ErrorMessage = "Product not found" });
                 return result;
             }
-            if (product.Stock < addToCartDto.Quantity)
+
+            // ✅ If variant provided, validate it
+            ProductVariant? variant = null;
+            if (addToCartDto.VariantId.HasValue)
             {
-                result.Errors.Add(new Error { ErrorCode = 202, ErrorMessage = "Insufficient stock available" });
+                variant = await _context.ProductVariants
+                    .FirstOrDefaultAsync(v => v.Id == addToCartDto.VariantId && v.ProductId == product.Id);
+
+                if (variant == null)
+                {
+                    result.Errors.Add(new Error { ErrorCode = 202, ErrorMessage = "Variant not found for this product" });
+                    return result;
+                }
+
+                if (variant.Stock < addToCartDto.Quantity)
+                {
+                    result.Errors.Add(new Error { ErrorCode = 203, ErrorMessage = "Insufficient stock for this variant" });
+                    return result;
+                }
+            }
+            else if (product.Stock < addToCartDto.Quantity)
+            {
+                result.Errors.Add(new Error { ErrorCode = 204, ErrorMessage = "Insufficient stock available" });
                 return result;
             }
+
             var cart = await GetOrCreateCartAsync(userId);
-            // Check if item already exists in cart
-            var existingItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == addToCartDto.ProductId);
-            if (existingItem != null) {
-                // Update quantity if item exists
+
+            // ✅ Identify same product + same variant as same line item
+            var existingItem = cart.CartItems.FirstOrDefault(ci =>
+                ci.ProductId == addToCartDto.ProductId &&
+                ci.VariantId == addToCartDto.VariantId);
+
+            if (existingItem != null)
+            {
                 existingItem.Quantity += addToCartDto.Quantity;
+                existingItem.ShoppingCart.UpdateTimestamps();
             }
             else
             {
-                // Add new item to cart
+                var priceToUse = variant?.Price ?? product.BasePrice;
+
                 var cartItem = new CartItem
                 {
                     ShoppingCartId = cart.Id,
                     ProductId = addToCartDto.ProductId,
+                    VariantId = addToCartDto.VariantId,
+                    VariantColor = variant?.Color,
                     Quantity = addToCartDto.Quantity,
+                    UnitPrice = priceToUse,
                     AddedAt = DateTime.UtcNow
                 };
+
                 _context.CartItems.Add(cartItem);
+                cart.UpdateTimestamps();
             }
-            cart.UpdatedAt = DateTime.UtcNow;
+
             await _context.SaveChangesAsync();
 
-            // Return updated cart
-            var updatedCart = await GetUserCartAsync(userId);
-            result.Response = updatedCart;
+            result.Response = await GetUserCartAsync(userId);
             return result;
         }
+
+        // ✅ Update cart item quantity
         public async Task<Result<ShoppingCartDto>> UpdateCartAsync(string userId, int cartItemId, int quantity)
         {
             var result = new Result<ShoppingCartDto>();
@@ -100,68 +136,78 @@ namespace EComApi.Services.Services
                 result.Errors.Add(new Error { ErrorCode = 203, ErrorMessage = "Quantity must be at least 1" });
                 return result;
             }
+
             var cartItem = await _context.CartItems
                 .Include(ci => ci.Products)
+                .Include(ci => ci.ProductVariant)
                 .Include(ci => ci.ShoppingCart)
                 .FirstOrDefaultAsync(ci => ci.Id == cartItemId && ci.ShoppingCart.UserId == userId);
+
             if (cartItem == null)
             {
                 result.Errors.Add(new Error { ErrorCode = 204, ErrorMessage = "Cart item not found" });
                 return result;
             }
-            if (cartItem.Products.Stock < quantity)
+
+            // Validate stock based on variant or product
+            var availableStock = cartItem.ProductVariant?.Stock ?? cartItem.Products.Stock;
+            if (availableStock < quantity)
             {
-                result.Errors.Add(new Error { ErrorCode = 202, ErrorMessage = "Insufficient stock available" });
+                result.Errors.Add(new Error { ErrorCode = 205, ErrorMessage = "Insufficient stock available" });
                 return result;
             }
+
             cartItem.Quantity = quantity;
-            cartItem.ShoppingCart.UpdatedAt = DateTime.UtcNow;
+            cartItem.ShoppingCart.UpdateTimestamps();
 
             await _context.SaveChangesAsync();
-
-            var updatedCart = await GetUserCartAsync(userId);
-            result.Response = updatedCart;
+            result.Response = await GetUserCartAsync(userId);
             return result;
         }
+
+        // ✅ Remove from cart
         public async Task<Result<ShoppingCartDto>> RemoveFromCartAsync(string userId, int cartItemId)
         {
             var result = new Result<ShoppingCartDto>();
+
             var cartItem = await _context.CartItems
-              .Include(ci => ci.ShoppingCart)
-              .FirstOrDefaultAsync(ci => ci.Id == cartItemId && ci.ShoppingCart.UserId == userId);
+                .Include(ci => ci.ShoppingCart)
+                .FirstOrDefaultAsync(ci => ci.Id == cartItemId && ci.ShoppingCart.UserId == userId);
+
             if (cartItem == null)
             {
                 result.Errors.Add(new Error { ErrorCode = 204, ErrorMessage = "Cart item not found" });
                 return result;
             }
-            _context.CartItems.Remove(cartItem);
 
-            cartItem.ShoppingCart.UpdatedAt = DateTime.UtcNow;
+            _context.CartItems.Remove(cartItem);
+            cartItem.ShoppingCart.UpdateTimestamps();
 
             await _context.SaveChangesAsync();
-
-            var updatedCart = await GetUserCartAsync(userId);
-            result.Response = updatedCart;
+            result.Response = await GetUserCartAsync(userId);
             return result;
-
         }
 
+        // ✅ Clear entire cart
         public async Task<Result<bool>> ClearCartAsync(string userId)
         {
             var result = new Result<bool>();
             var cart = await _context.ShoppingCart
-               .Include(c => c.CartItems)
-               .FirstOrDefaultAsync(c => c.UserId == userId);
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
             if (cart != null)
             {
                 _context.CartItems.RemoveRange(cart.CartItems);
-                cart.UpdatedAt = DateTime.UtcNow;
+                cart.UpdateTimestamps();
                 await _context.SaveChangesAsync();
             }
+
             result.Response = true;
             return result;
-
         }
+
+        // ✅ DTO Mapper
         private ShoppingCartDto MapToCartDto(ShoppingCart cart)
         {
             return new ShoppingCartDto
@@ -171,18 +217,16 @@ namespace EComApi.Services.Services
                 Items = cart.CartItems.Select(ci => new CartItemDto
                 {
                     CartItemId = ci.Id,
-                    ProductId = ci.Products.Id,
+                    ProductId = ci.ProductId,
                     ProductName = ci.Products.Name,
-                    Price = ci.Products.Price,
+                    VariantId = ci.VariantId,
+                    VariantColor = ci.VariantColor,
+                    Price = ci.UnitPrice,
                     Quantity = ci.Quantity,
-                    AvailableStock = ci.Products.Stock
+                    AvailableStock = ci.ProductVariant?.Stock ?? ci.Products.Stock
                 }).ToList(),
                 TotalAmount = cart.TotalAmount
             };
         }
-
-
-
-
     }
 }

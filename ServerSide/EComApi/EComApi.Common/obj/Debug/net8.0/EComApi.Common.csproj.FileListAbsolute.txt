@@ -16,6 +16,7 @@ D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\ECo
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\EComApi.Common.AssemblyInfoInputs.cache
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\EComApi.Common.AssemblyInfo.cs
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\EComApi.Common.csproj.CoreCompileInputs.cache
+D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\EComApi.Common.sourcelink.json
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\EComApi.Common.dll
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\refint\EComApi.Common.dll
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Common\obj\Debug\net8.0\EComApi.Common.pdb

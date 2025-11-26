@@ -1,4 +1,4 @@
-﻿using EComApi.Entity.DTO;
+﻿using EComApi.Entity.DTO.Security;
 using EComApi.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 

@@ -30,6 +30,7 @@ D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\E
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\EComApi.Services.AssemblyInfoInputs.cache
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\EComApi.Services.AssemblyInfo.cs
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\EComApi.Services.csproj.CoreCompileInputs.cache
+D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\EComApi.Services.sourcelink.json
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\EComApi..BED73031.Up2Date
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\EComApi.Services.dll
 D:\My Projects\ApexChrono\ServerSide\EComApi\EComApi.Services\obj\Debug\net8.0\refint\EComApi.Services.dll

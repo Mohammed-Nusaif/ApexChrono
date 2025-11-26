@@ -1,5 +1,5 @@
 ﻿using EComApi.Common.Common.DTO;
-using EComApi.Entity.DTO;
+using EComApi.Entity.DTO.Cart;
 using EComApi.Entity.Models;
 using System;
 using System.Collections.Generic;

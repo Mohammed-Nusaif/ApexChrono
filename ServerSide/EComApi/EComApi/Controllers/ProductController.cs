@@ -1,10 +1,8 @@
-﻿using EComApi.Entity.DTO;
+﻿using EComApi.Entity.DTO.Shared;
 using EComApi.Entity.Models;
 using EComApi.Services.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EComApi.Controllers
 {
@@ -18,50 +16,64 @@ namespace EComApi.Controllers
         {
             _productService = productService;
         }
+
+        // ✅ GET ALL PRODUCTS (with variants)
         [Authorize]
         [HttpGet("GetALlProduct")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllProducts()
         {
             var result = await _productService.GetAllProductsAsync();
             if (result.isError) return BadRequest(result.Errors);
-            return Ok(result.Response);
+            return Ok(new { count = result.Response.Count, products = result.Response });
         }
 
+        // ✅ GET PRODUCT BY ID (with variants)
         [Authorize]
-        [HttpGet("GetProductById{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("GetProductById/{id}")]
+        public async Task<IActionResult> GetProductById(int id)
         {
             var result = await _productService.GetProductByIdAsync(id);
             if (result.isError) return NotFound(result.Errors);
             return Ok(result.Response);
         }
 
+        // ✅ ADD PRODUCT (with variants + images)
         [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProduct(Products product)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddProduct([FromBody] Products product)
         {
+            if (product == null)
+                return BadRequest("Product data is required");
+
             var result = await _productService.AddProductAsync(product);
             if (result.isError) return BadRequest(result.Errors);
-            return Ok(result.Response);
+            return Ok(new { message = "Product created successfully", data = result.Response });
         }
 
-        [HttpPut("UpdateProduct{id}")]
-        public async Task<IActionResult> Update(int id, Products product)
+        // ✅ UPDATE PRODUCT (with variants)
+        [HttpPut("UpdateProduct/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] Products product)
         {
-            if (id != product.Id) return BadRequest("ID mismatch");
+            if (id != product.Id)
+                return BadRequest("Product ID mismatch");
 
             var result = await _productService.UpdateProductAsync(product);
             if (result.isError) return BadRequest(result.Errors);
-            return Ok(result.Response);
+            return Ok(new { message = "Product updated successfully", data = result.Response });
         }
 
-        [HttpDelete("DeleteProduct{id}")]
-        public async Task<IActionResult> Delete(int id)
+        // ✅ DELETE PRODUCT
+        [HttpDelete("DeleteProduct/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             var result = await _productService.DeleteProductAsync(id);
             if (result.isError) return NotFound(result.Errors);
-            return Ok(result.Response);
+            return Ok(new { message = "Product deleted successfully" });
         }
 
+        // ✅ FILTERED PRODUCTS
         [HttpPost("filter")]
         public async Task<IActionResult> GetFilteredProducts([FromBody] ProductFilterDto filter)
         {
@@ -73,26 +85,42 @@ namespace EComApi.Controllers
                     .ToList();
                 return BadRequest(new { errors });
             }
+
             var result = await _productService.GetFilteredProductsAsync(filter);
             if (result.isError) return BadRequest(result.Errors);
-            return Ok(result.Response);
+            return Ok(new { count = result.Response.Count, products = result.Response });
         }
+
+        // ✅ GET CATEGORIES
         [HttpGet("categories")]
         public async Task<IActionResult> GetCategories()
         {
             var result = await _productService.GetCategoriesAsync();
-            if (result.Errors.Any())
-                return BadRequest(result);
-            return Ok(result);
+            if (result.isError) return BadRequest(result.Errors);
+            return Ok(result.Response);
         }
 
+        // ✅ GET BRANDS
         [HttpGet("brands")]
         public async Task<IActionResult> GetBrands()
         {
             var result = await _productService.GetBrandsAsync();
-            if (result.Errors.Any())
-                return BadRequest(result);
-            return Ok(result);
+            if (result.isError) return BadRequest(result.Errors);
+            return Ok(result.Response);
+        }
+
+        // ✅ NEW: GET VARIANTS FOR SPECIFIC PRODUCT
+        [HttpGet("{productId}/variants")]
+        public async Task<IActionResult> GetProductVariants(int productId)
+        {
+            var result = await _productService.GetProductByIdAsync(productId);
+            if (result.isError) return NotFound(result.Errors);
+
+            var product = result.Response;
+            if (product?.Variants == null || !product.Variants.Any())
+                return Ok(new { message = "No variants available for this product", variants = new List<ProductVariant>() });
+
+            return Ok(new { productId = product.Id, variants = product.Variants });
         }
     }
 }

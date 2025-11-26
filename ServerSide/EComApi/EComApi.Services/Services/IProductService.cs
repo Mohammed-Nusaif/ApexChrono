@@ -1,5 +1,5 @@
 ﻿using EComApi.Common.Common.DTO;
-using EComApi.Entity.DTO;
+using EComApi.Entity.DTO.Shared;
 using EComApi.Entity.Models;
 
 

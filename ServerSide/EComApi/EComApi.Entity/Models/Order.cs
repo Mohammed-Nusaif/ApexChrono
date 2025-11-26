@@ -1,7 +1,5 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 
 namespace EComApi.Entity.Models
 {
@@ -13,32 +11,61 @@ namespace EComApi.Entity.Models
         [Required]
         public string UserId { get; set; }
 
-        [ForeignKey("UserId")]
+        [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;
-        [Column(TypeName ="decimal(18,2)")]
-        public Decimal TotalAmount { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalAmount { get; set; }
+
+        [Required]
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
-        // Razorpay fields 
+
+        // 🧾 Payment Information
+        [MaxLength(100)]
         public string? RazorpayOrderId { get; set; }
+
+        [MaxLength(100)]
         public string? RazorpayPaymentId { get; set; }
+
+        [MaxLength(256)]
         public string? RazorpaySignature { get; set; }
-        // Shipping information
+
+        // 🚚 Shipping Information
+        [Required, MaxLength(500)]
         public string ShippingAddress { get; set; }
+
+        [Required, MaxLength(15)]
         public string CustomerPhone { get; set; }
+
+        [Required, MaxLength(100)]
         public string CustomerEmail { get; set; }
-        // Navigation property
+
+        // 💬 Optional fields for future expansion
+        [MaxLength(255)]
+        public string? AdminComment { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? ShippedDate { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? DeliveredDate { get; set; }
+
+        // 🧩 Navigation property
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+        // 📦 Enum for tracking order lifecycle
         public enum OrderStatus
         {
             Pending,        // Order created, payment pending
             PaymentFailed,  // Payment failed
             Confirmed,      // Payment successful
-            Processing,     // Order being processed
-            Shipped,        // Order shipped
-            Delivered,      // Order delivered
-            Cancelled,      // Order cancelled
+            Processing,     // Preparing shipment
+            Shipped,        // Dispatched
+            Delivered,      // Customer received order
+            Cancelled,      // Cancelled by admin or user
             Refunded        // Payment refunded
         }
     }

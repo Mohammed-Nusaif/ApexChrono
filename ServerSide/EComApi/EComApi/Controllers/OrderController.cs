@@ -1,4 +1,5 @@
-﻿using EComApi.Entity.DTO;
+﻿using EComApi.Entity.DTO.Order;
+using EComApi.Entity.DTO.Payment;
 using EComApi.Services.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -129,5 +130,19 @@ namespace EComApi.Controllers
             // Payment verification successful
             return Ok(new { message = "Payment verified successfully", orderId = verificationDto.OrderId });
         }
+
+
+        [HttpPost("{orderId}/cancel")]
+        public async Task<IActionResult> CancelOrder(int orderId)
+        {
+            var userId = GetUserId();
+            var result = await _orderService.CancelOrderAsync(orderId, userId);
+
+            if (result.Errors.Any())
+                return BadRequest(result.Errors);
+
+            return Ok(new { message = "Order cancelled successfully" });
+        }
+
     }
 }

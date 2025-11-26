@@ -1,61 +1,67 @@
 ﻿using EComApi.Entity.Models;
-using EComApi.Services.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using static EComApi.Entity.Models.Order;
 
 namespace EComApi.Controllers.Admin
 {
-    [Route("api/Admin/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
     [Authorize(Roles = "Admin")]
     public class DashboardController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly IRoleService _roleService;
-        public DashboardController(ApplicationDbContext context, IRoleService roleService)
+
+        public DashboardController(ApplicationDbContext context)
         {
             _context = context;
-            _roleService = roleService;
         }
+
+        // ✅ Dashboard Summary API
         [HttpGet("stats")]
         public async Task<IActionResult> GetDashboardStats()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userName = User.FindFirstValue("username");
-            var roles = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value);
-
-            Console.WriteLine($"User ID: {userId}");
-            Console.WriteLine($"Username: {userName}");
-            Console.WriteLine($"Roles in token: {string.Join(", ", roles)}");
-
-            // Check if user is admin via database
-            var isAdminFromDb = await _roleService.IsUserAdmin(userId);
-            Console.WriteLine($"Is Admin from DB: {isAdminFromDb}");
-
-            if (!await IsCurrentUserAdmin())
-            {
-                Console.WriteLine("IsCurrentUserAdmin returned FALSE");
-                return Forbid();
-            }
-
-            Console.WriteLine("IsCurrentUserAdmin returned TRUE - proceeding...");
-
-            if (!await IsCurrentUserAdmin())
-            {
-                return Forbid();
-            }
-
+            // --- Overall Counts ---
             var totalUsers = await _context.Users.CountAsync();
             var totalProducts = await _context.Products.CountAsync();
+            var totalVariants = await _context.ProductVariants.CountAsync();
             var totalOrders = await _context.Orders.CountAsync();
+
+            // --- Revenue ---
             var totalRevenue = await _context.Orders
                 .Where(o => o.Status == OrderStatus.Confirmed || o.Status == OrderStatus.Delivered)
                 .SumAsync(o => o.TotalAmount);
 
+            // --- User Growth (last 30 days) ---
+            var usersLastMonth = await _context.Users
+                .Where(u => u.CreatedAt >= DateTime.UtcNow.AddDays(-30))
+                .CountAsync();
+
+            // --- Monthly Revenue Trend (SAFE FIX APPLIED) ---
+            var monthlyRevenueRaw = await _context.Orders
+                .Where(o => o.Status == OrderStatus.Confirmed || o.Status == OrderStatus.Delivered)
+                .GroupBy(o => new { o.OrderDate.Year, o.OrderDate.Month })
+                .Select(g => new
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    TotalOrders = g.Count(),
+                    TotalRevenue = g.Sum(o => o.TotalAmount)
+                })
+                .OrderBy(x => x.Year)
+                .ThenBy(x => x.Month)
+                .Take(6)
+                .ToListAsync();
+
+            var monthlyRevenue = monthlyRevenueRaw.Select(x => new
+            {
+                Month = $"{x.Month:D2}-{x.Year}",
+                x.TotalOrders,
+                x.TotalRevenue
+            });
+
+            // --- Recent Orders ---
             var recentOrders = await _context.Orders
                 .Include(o => o.User)
                 .OrderByDescending(o => o.OrderDate)
@@ -63,34 +69,73 @@ namespace EComApi.Controllers.Admin
                 .Select(o => new
                 {
                     o.Id,
-                    o.User.UserName,
+                    CustomerName = o.User.UserName,
                     o.TotalAmount,
-                    o.Status,
+                    Status = o.Status.ToString(),
                     o.OrderDate
                 })
                 .ToListAsync();
 
+            // --- Low Stock Check ---
             var lowStockProducts = await _context.Products
                 .Where(p => p.Stock < 10)
+                .Select(p => new
+                {
+                    p.Id,
+                    p.Name,
+                    p.Brand,
+                    p.Stock,
+                    IsVariant = false
+                })
+                .ToListAsync();
+
+            var lowStockVariants = await _context.ProductVariants
+                .Where(v => v.Stock < 10)
+                .Select(v => new
+                {
+                    v.Id,
+                    Name = v.Color,
+                    Brand = "Variant",
+                    v.Stock,
+                    IsVariant = true
+                })
+                .ToListAsync();
+
+            var combinedLowStock = lowStockProducts.Concat(lowStockVariants).Take(10).ToList();
+
+            // --- Top Selling Products (OPTION 1 FIX APPLIED) ---
+            var topSelling = await _context.OrderItems
+                .GroupBy(oi => new { oi.ProductId, oi.ProductName })
+                .Select(g => new
+                {
+                    g.Key.ProductId,
+                    g.Key.ProductName,
+                    TotalSold = g.Sum(x => x.Quantity),
+                    Revenue = g.Sum(x => x.Quantity * x.UnitPrice) // FIXED — WORKING IN EF
+                })
+                .OrderByDescending(x => x.TotalSold)
                 .Take(5)
                 .ToListAsync();
 
             return Ok(new
             {
-                TotalUsers = totalUsers,
-                TotalProducts = totalProducts,
-                TotalOrders = totalOrders,
-                TotalRevenue = totalRevenue,
+                Summary = new
+                {
+                    TotalUsers = totalUsers,
+                    UsersLastMonth = usersLastMonth,
+                    TotalProducts = totalProducts,
+                    TotalVariants = totalVariants,
+                    TotalOrders = totalOrders,
+                    TotalRevenue = totalRevenue
+                },
+                Trends = new
+                {
+                    MonthlyRevenue = monthlyRevenue
+                },
                 RecentOrders = recentOrders,
-                LowStockProducts = lowStockProducts
+                LowStockAlerts = combinedLowStock,
+                TopSellingProducts = topSelling
             });
-
-        }
-
-        private async Task<bool> IsCurrentUserAdmin()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return await _roleService.IsUserAdmin(userId);
         }
     }
 }

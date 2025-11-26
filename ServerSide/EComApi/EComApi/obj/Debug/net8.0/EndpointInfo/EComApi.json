@@ -67,7 +67,31 @@
         }
       }
     },
-    "/api/Cart/GetCart": {
+    "/api/Admin/Profile": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/IsAdmin": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cart/get-cart": {
       "get": {
         "tags": [
           "Cart"
@@ -190,7 +214,7 @@
         }
       }
     },
-    "/api/Admin/Dashboard/stats": {
+    "/api/admin/Dashboard/stats": {
       "get": {
         "tags": [
           "Dashboard"
@@ -364,7 +388,30 @@
         }
       }
     },
-    "/api/Admin/Orders": {
+    "/api/Order/{orderId}/cancel": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/orders/getAllOrders": {
       "get": {
         "tags": [
           "Orders"
@@ -376,7 +423,7 @@
         }
       }
     },
-    "/api/Admin/Orders/{id}": {
+    "/api/admin/orders/GerOrderById/{id}": {
       "get": {
         "tags": [
           "Orders"
@@ -399,7 +446,7 @@
         }
       }
     },
-    "/api/Admin/Orders/{id}/status": {
+    "/api/admin/orders/{id}/UpdateOrderStatus": {
       "put": {
         "tags": [
           "Orders"
@@ -441,7 +488,30 @@
         }
       }
     },
-    "/api/Admin/Orders/stats": {
+    "/api/admin/orders/{id}/CancelOrder": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/orders/GetOrderStats": {
       "get": {
         "tags": [
           "Orders"
@@ -465,7 +535,7 @@
         }
       }
     },
-    "/api/Product/GetProductById{id}": {
+    "/api/Product/GetProductById/{id}": {
       "get": {
         "tags": [
           "Product"
@@ -519,7 +589,7 @@
         }
       }
     },
-    "/api/Product/UpdateProduct{id}": {
+    "/api/Product/UpdateProduct/{id}": {
       "put": {
         "tags": [
           "Product"
@@ -561,7 +631,7 @@
         }
       }
     },
-    "/api/Product/DeleteProduct{id}": {
+    "/api/Product/DeleteProduct/{id}": {
       "delete": {
         "tags": [
           "Product"
@@ -639,7 +709,30 @@
         }
       }
     },
-    "/api/Admin/Products": {
+    "/api/Product/{productId}/variants": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/products/get-all-products": {
       "get": {
         "tags": [
           "Products"
@@ -649,38 +742,9 @@
             "description": "OK"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Products"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateProductDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateProductDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateProductDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
-    "/api/Admin/Products/{id}": {
+    "/api/admin/products/get-product-by-id/{id}": {
       "get": {
         "tags": [
           "Products"
@@ -701,7 +765,150 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/admin/products/create-product": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "BasePrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Stock": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Category": {
+                    "type": "string"
+                  },
+                  "Brand": {
+                    "type": "string"
+                  },
+                  "ImageUrls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "DiscountPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Rating": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "HasGPS": {
+                    "type": "boolean"
+                  },
+                  "HasHeartRate": {
+                    "type": "boolean"
+                  },
+                  "HasSleepTracking": {
+                    "type": "boolean"
+                  },
+                  "HasBluetooth": {
+                    "type": "boolean"
+                  },
+                  "HasWaterResistance": {
+                    "type": "boolean"
+                  },
+                  "HasNFC": {
+                    "type": "boolean"
+                  },
+                  "Variants": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CreateVariantDto"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Name": {
+                  "style": "form"
+                },
+                "BasePrice": {
+                  "style": "form"
+                },
+                "Stock": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Category": {
+                  "style": "form"
+                },
+                "Brand": {
+                  "style": "form"
+                },
+                "ImageUrls": {
+                  "style": "form"
+                },
+                "Images": {
+                  "style": "form"
+                },
+                "DiscountPrice": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "HasGPS": {
+                  "style": "form"
+                },
+                "HasHeartRate": {
+                  "style": "form"
+                },
+                "HasSleepTracking": {
+                  "style": "form"
+                },
+                "HasBluetooth": {
+                  "style": "form"
+                },
+                "HasWaterResistance": {
+                  "style": "form"
+                },
+                "HasNFC": {
+                  "style": "form"
+                },
+                "Variants": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/products/update-product-by-id/{id}": {
       "put": {
         "tags": [
           "Products"
@@ -719,19 +926,136 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateProductDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateProductDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateProductDto"
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "BasePrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Stock": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Category": {
+                    "type": "string"
+                  },
+                  "Brand": {
+                    "type": "string"
+                  },
+                  "ImageUrls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "DiscountPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Rating": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "HasGPS": {
+                    "type": "boolean"
+                  },
+                  "HasHeartRate": {
+                    "type": "boolean"
+                  },
+                  "HasSleepTracking": {
+                    "type": "boolean"
+                  },
+                  "HasBluetooth": {
+                    "type": "boolean"
+                  },
+                  "HasWaterResistance": {
+                    "type": "boolean"
+                  },
+                  "HasNFC": {
+                    "type": "boolean"
+                  },
+                  "Variants": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UpdateVariantDto"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "BasePrice": {
+                  "style": "form"
+                },
+                "Stock": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Category": {
+                  "style": "form"
+                },
+                "Brand": {
+                  "style": "form"
+                },
+                "ImageUrls": {
+                  "style": "form"
+                },
+                "Images": {
+                  "style": "form"
+                },
+                "DiscountPrice": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "HasGPS": {
+                  "style": "form"
+                },
+                "HasHeartRate": {
+                  "style": "form"
+                },
+                "HasSleepTracking": {
+                  "style": "form"
+                },
+                "HasBluetooth": {
+                  "style": "form"
+                },
+                "HasWaterResistance": {
+                  "style": "form"
+                },
+                "HasNFC": {
+                  "style": "form"
+                },
+                "Variants": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -741,7 +1065,32 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/admin/products/toggle-status-by-id/{id}": {
+      "patch": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/products/delete-product-by-id/{id}": {
       "delete": {
         "tags": [
           "Products"
@@ -754,6 +1103,124 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RoleAssignment": {
+      "post": {
+        "tags": [
+          "RoleAssignment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRoleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRoleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RoleAssignment/{email}": {
+      "get": {
+        "tags": [
+          "RoleAssignment"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RoleManager/create": {
+      "post": {
+        "tags": [
+          "RoleManager"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RoleManager/list": {
+      "get": {
+        "tags": [
+          "RoleManager"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RoleManager/delete/{roleName}": {
+      "delete": {
+        "tags": [
+          "RoleManager"
+        ],
+        "parameters": [
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -828,6 +1295,207 @@
           }
         }
       }
+    },
+    "/api/User/GetAllUser": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetUsersbyId/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/UpdateUserbyId/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/{id}/BlockUser": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/{id}/Assignroles": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRolesDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRolesDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRolesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/{id}/reset-password": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/{id}/DeleteUser": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -848,6 +1516,38 @@
             "minimum": 1,
             "type": "integer",
             "format": "int32"
+          },
+          "variantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignRoleRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignRolesDto": {
+        "type": "object",
+        "properties": {
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -873,71 +1573,59 @@
             "minLength": 1,
             "type": "string",
             "format": "email"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNotes": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CreateProductDto": {
+      "CreateRoleRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateVariantDto": {
+        "type": "object",
+        "properties": {
+          "color": {
             "type": "string",
             "nullable": true
           },
           "price": {
             "type": "number",
-            "format": "double"
-          },
-          "stock": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "category": {
-            "type": "string",
-            "nullable": true
-          },
-          "brand": {
-            "type": "string",
-            "nullable": true
-          },
-          "color": {
-            "type": "string",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "discountPrice": {
-            "type": "number",
             "format": "double",
             "nullable": true
           },
-          "rating": {
-            "type": "number",
-            "format": "double"
+          "stock": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
-          "hasGPS": {
-            "type": "boolean"
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           },
-          "hasHeartRate": {
-            "type": "boolean"
-          },
-          "hasSleepTracking": {
-            "type": "boolean"
-          },
-          "hasBluetooth": {
-            "type": "boolean"
-          },
-          "hasWaterResistance": {
-            "type": "boolean"
-          },
-          "hasNFC": {
-            "type": "boolean"
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1028,14 +1716,33 @@
         },
         "additionalProperties": false
       },
-      "Products": {
+      "ProductVariant": {
+        "required": [
+          "color",
+          "productId"
+        ],
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
-          "name": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "color": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "material": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "size": {
+            "maxLength": 50,
             "type": "string",
             "nullable": true
           },
@@ -1047,33 +1754,54 @@
             "type": "integer",
             "format": "int32"
           },
-          "description": {
-            "type": "string",
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
-          "category": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Products": {
+        "required": [
+          "brand",
+          "category",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
           },
           "brand": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
           },
-          "color": {
-            "maxLength": 30,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
+          "category": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
           },
-          "imageUrl": {
+          "description": {
             "maxLength": 500,
-            "minLength": 0,
             "type": "string",
             "nullable": true
+          },
+          "basePrice": {
+            "type": "number",
+            "format": "double"
           },
           "discountPrice": {
             "type": "number",
@@ -1084,8 +1812,23 @@
             "type": "number",
             "format": "double"
           },
-          "isActive": {
-            "type": "boolean"
+          "thumbnailUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductVariant"
+            },
+            "nullable": true
           },
           "hasGPS": {
             "type": "boolean"
@@ -1105,15 +1848,40 @@
           "hasNFC": {
             "type": "boolean"
           },
+          "isActive": {
+            "type": "boolean"
+          },
           "createdDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "totalStock": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "stock": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
       "RequestDto": {
         "required": [
+          "email",
           "fullName",
           "password",
           "userName"
@@ -1121,6 +1889,10 @@
         "type": "object",
         "properties": {
           "fullName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
             "minLength": 1,
             "type": "string"
           },
@@ -1143,6 +1915,16 @@
         },
         "additionalProperties": false
       },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateOrderStatusDto": {
         "type": "object",
         "properties": {
@@ -1153,67 +1935,79 @@
         },
         "additionalProperties": false
       },
-      "UpdateProductDto": {
+      "UpdateUserDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "fullName": {
             "type": "string",
             "nullable": true
           },
-          "price": {
-            "type": "number",
-            "format": "double"
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
           },
-          "stock": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateVariantDto": {
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "integer",
             "format": "int32"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "category": {
-            "type": "string",
-            "nullable": true
-          },
-          "brand": {
-            "type": "string",
-            "nullable": true
           },
           "color": {
             "type": "string",
             "nullable": true
           },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "discountPrice": {
+          "price": {
             "type": "number",
             "format": "double",
             "nullable": true
           },
-          "rating": {
-            "type": "number",
-            "format": "double"
+          "stock": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           },
-          "hasGPS": {
-            "type": "boolean"
+          "imageUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           },
-          "hasHeartRate": {
-            "type": "boolean"
-          },
-          "hasSleepTracking": {
-            "type": "boolean"
-          },
-          "hasBluetooth": {
-            "type": "boolean"
-          },
-          "hasWaterResistance": {
-            "type": "boolean"
-          },
-          "hasNFC": {
-            "type": "boolean"
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

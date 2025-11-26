@@ -1,5 +1,5 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EComApi.Entity.Models
 {
@@ -7,34 +7,56 @@ namespace EComApi.Entity.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(150)]
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Stock {  get; set; }
-        public string Description { get; set; }
 
-        [StringLength(50)]
-        public string Category { get; set; }
-
-        [StringLength(30)]
+        [Required]
+        [MaxLength(100)]
         public string Brand { get; set; }
 
-        [StringLength(30)]
-        public string Color { get; set; }
+        [Required]
+        [MaxLength(100)]
+        public string Category { get; set; }
 
-        [StringLength(500)]
-        public string ImageUrl { get; set; }
+        [MaxLength(500)]
+        public string? Description { get; set; }
 
-        public decimal? DiscountPrice { get; set; } // For "On Sale" filter
-        public decimal Rating { get; set; } = 0; // For customer rating filter
-        public bool IsActive { get; set; } = true;
+        // Base details
+        public decimal BasePrice { get; set; }
+        public decimal? DiscountPrice { get; set; }
+        public decimal Rating { get; set; } = 0;
 
-        // Features for "Features" filter
+        // 🔹 Main image (used for listing)
+        public string? ThumbnailUrl { get; set; }
+
+        // 🔹 Multiple gallery images
+        public List<string>? ImageUrls { get; set; }
+
+        // 🔹 Variants (e.g. color, strap type)
+        public List<ProductVariant>? Variants { get; set; }
+
+        // 🔹 Additional metadata
         public bool HasGPS { get; set; }
         public bool HasHeartRate { get; set; }
         public bool HasSleepTracking { get; set; }
         public bool HasBluetooth { get; set; }
         public bool HasWaterResistance { get; set; }
         public bool HasNFC { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        // 🔹 Lifecycle
+        public bool IsActive { get; set; } = true;
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedDate { get; set; }
+
+        // 🔹 Optional: Tags for search or filters
+        public List<string>? Tags { get; set; }
+
+        // 🔹 Optional: Average stock (useful for quick dashboard)
+        [NotMapped]
+        public int TotalStock => Variants?.Sum(v => v.Stock) ?? 0;
+
+        public int Stock { get; set; }
     }
 }

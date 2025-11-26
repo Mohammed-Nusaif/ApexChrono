@@ -2,7 +2,17 @@
   {
     "ContainingType": "EComApi.Controllers.Admin.DashboardController",
     "Method": "GetDashboardStats",
-    "RelativePath": "api/Admin/Dashboard/stats",
+    "RelativePath": "api/admin/Dashboard/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.AdminController",
+    "Method": "CheckIfAdmin",
+    "RelativePath": "api/Admin/IsAdmin",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -11,19 +21,9 @@
   },
   {
     "ContainingType": "EComApi.Controllers.Admin.OrdersController",
-    "Method": "GetAllOrders",
-    "RelativePath": "api/Admin/Orders",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "EComApi.Controllers.Admin.OrdersController",
-    "Method": "GetOrderById",
-    "RelativePath": "api/Admin/Orders/{id}",
-    "HttpMethod": "GET",
+    "Method": "CancelOrder",
+    "RelativePath": "api/admin/orders/{id}/CancelOrder",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -38,7 +38,7 @@
   {
     "ContainingType": "EComApi.Controllers.Admin.OrdersController",
     "Method": "UpdateOrderStatus",
-    "RelativePath": "api/Admin/Orders/{id}/status",
+    "RelativePath": "api/admin/orders/{id}/UpdateOrderStatus",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -50,7 +50,7 @@
       },
       {
         "Name": "statusDto",
-        "Type": "EComApi.Controllers.Admin.UpdateOrderStatusDto",
+        "Type": "EComApi.Entity.DTO.Order.UpdateOrderStatusDto",
         "IsRequired": true
       }
     ],
@@ -58,8 +58,24 @@
   },
   {
     "ContainingType": "EComApi.Controllers.Admin.OrdersController",
-    "Method": "GetOrderStats",
-    "RelativePath": "api/Admin/Orders/stats",
+    "Method": "GetOrderById",
+    "RelativePath": "api/admin/orders/GerOrderById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.OrdersController",
+    "Method": "GetAllOrders",
+    "RelativePath": "api/admin/orders/getAllOrders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -67,9 +83,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EComApi.Controllers.Admin.ProductsController",
-    "Method": "GetAllProducts",
-    "RelativePath": "api/Admin/Products",
+    "ContainingType": "EComApi.Controllers.Admin.OrdersController",
+    "Method": "GetOrderStats",
+    "RelativePath": "api/admin/orders/GetOrderStats",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -79,14 +95,110 @@
   {
     "ContainingType": "EComApi.Controllers.Admin.ProductsController",
     "Method": "CreateProduct",
-    "RelativePath": "api/Admin/Products",
+    "RelativePath": "api/admin/products/create-product",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createProductDto",
-        "Type": "EComApi.Controllers.Admin.CreateProductDto",
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BasePrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Stock",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImageUrls",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Images",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "DiscountPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasGPS",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasHeartRate",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasSleepTracking",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBluetooth",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWaterResistance",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasNFC",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Variants",
+        "Type": "System.Collections.Generic.List\u00601[[EComApi.Entity.DTO.Product.CreateVariantDto, EComApi.Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.ProductsController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/admin/products/delete-product-by-id/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -94,9 +206,35 @@
   },
   {
     "ContainingType": "EComApi.Controllers.Admin.ProductsController",
-    "Method": "GetProductById",
-    "RelativePath": "api/Admin/Products/{id}",
+    "Method": "GetAllProducts",
+    "RelativePath": "api/admin/products/get-all-products",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.ProductsController",
+    "Method": "GetProductById",
+    "RelativePath": "api/admin/products/get-product-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.ProductsController",
+    "Method": "ToggleProductStatus",
+    "RelativePath": "api/admin/products/toggle-status-by-id/{id}",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -111,7 +249,7 @@
   {
     "ContainingType": "EComApi.Controllers.Admin.ProductsController",
     "Method": "UpdateProduct",
-    "RelativePath": "api/Admin/Products/{id}",
+    "RelativePath": "api/admin/products/update-product-by-id/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -122,27 +260,106 @@
         "IsRequired": true
       },
       {
-        "Name": "updateProductDto",
-        "Type": "EComApi.Controllers.Admin.UpdateProductDto",
-        "IsRequired": true
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BasePrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Stock",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Brand",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImageUrls",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Images",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "DiscountPrice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasGPS",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasHeartRate",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasSleepTracking",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasBluetooth",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasWaterResistance",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HasNFC",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Variants",
+        "Type": "System.Collections.Generic.List\u00601[[EComApi.Entity.DTO.Product.UpdateVariantDto, EComApi.Entity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "EComApi.Controllers.Admin.ProductsController",
-    "Method": "DeleteProduct",
-    "RelativePath": "api/Admin/Products/{id}",
-    "HttpMethod": "DELETE",
+    "ContainingType": "EComApi.Controllers.Admin.AdminController",
+    "Method": "GetProfile",
+    "RelativePath": "api/Admin/Profile",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -155,7 +372,7 @@
     "Parameters": [
       {
         "Name": "addToCartDto",
-        "Type": "EComApi.Entity.DTO.AddToCartDto",
+        "Type": "EComApi.Entity.DTO.Cart.AddToCartDto",
         "IsRequired": true
       }
     ],
@@ -174,7 +391,7 @@
   {
     "ContainingType": "EComApi.Controllers.CartController",
     "Method": "GetCart",
-    "RelativePath": "api/Cart/GetCart",
+    "RelativePath": "api/Cart/get-cart",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -212,6 +429,22 @@
       },
       {
         "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.OrderController",
+    "Method": "CancelOrder",
+    "RelativePath": "api/Order/{orderId}/cancel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -265,7 +498,7 @@
     "Parameters": [
       {
         "Name": "createOrderDto",
-        "Type": "EComApi.Entity.DTO.CreateOrderDto",
+        "Type": "EComApi.Entity.DTO.Order.CreateOrderDto",
         "IsRequired": true
       }
     ],
@@ -307,7 +540,23 @@
     "Parameters": [
       {
         "Name": "verificationDto",
-        "Type": "EComApi.Entity.DTO.PaymentVerificationDto",
+        "Type": "EComApi.Entity.DTO.Payment.PaymentVerificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.ProductController",
+    "Method": "GetProductVariants",
+    "RelativePath": "api/Product/{productId}/variants",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -351,8 +600,8 @@
   },
   {
     "ContainingType": "EComApi.Controllers.ProductController",
-    "Method": "Delete",
-    "RelativePath": "api/Product/DeleteProduct{id}",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/Product/DeleteProduct/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -375,7 +624,7 @@
     "Parameters": [
       {
         "Name": "filter",
-        "Type": "EComApi.Entity.DTO.ProductFilterDto",
+        "Type": "EComApi.Entity.DTO.Shared.ProductFilterDto",
         "IsRequired": true
       }
     ],
@@ -383,7 +632,7 @@
   },
   {
     "ContainingType": "EComApi.Controllers.ProductController",
-    "Method": "GetAll",
+    "Method": "GetAllProducts",
     "RelativePath": "api/Product/GetALlProduct",
     "HttpMethod": "GET",
     "IsController": true,
@@ -393,8 +642,8 @@
   },
   {
     "ContainingType": "EComApi.Controllers.ProductController",
-    "Method": "GetById",
-    "RelativePath": "api/Product/GetProductById{id}",
+    "Method": "GetProductById",
+    "RelativePath": "api/Product/GetProductById/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -409,8 +658,8 @@
   },
   {
     "ContainingType": "EComApi.Controllers.ProductController",
-    "Method": "Update",
-    "RelativePath": "api/Product/UpdateProduct{id}",
+    "Method": "UpdateProduct",
+    "RelativePath": "api/Product/UpdateProduct/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -426,6 +675,80 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Setup.RoleAssignmentController",
+    "Method": "AssignRole",
+    "RelativePath": "api/RoleAssignment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EComApi.Entity.Models.AssignRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Setup.RoleAssignmentController",
+    "Method": "GetUserRoles",
+    "RelativePath": "api/RoleAssignment/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Setup.RoleManager",
+    "Method": "CreateRole",
+    "RelativePath": "api/RoleManager/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EComApi.Entity.Models.CreateRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Setup.RoleManager",
+    "Method": "DeleteRole",
+    "RelativePath": "api/RoleManager/delete/{roleName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Setup.RoleManager",
+    "Method": "GetRoles",
+    "RelativePath": "api/RoleManager/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -471,6 +794,127 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "AssignRoles",
+    "RelativePath": "api/User/{id}/Assignroles",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EComApi.Entity.DTO.User.AssignRolesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "Block",
+    "RelativePath": "api/User/{id}/BlockUser",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "Delete",
+    "RelativePath": "api/User/{id}/DeleteUser",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/User/{id}/reset-password",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EComApi.Entity.DTO.User.ResetPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "GetAll",
+    "RelativePath": "api/User/GetAllUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "GetById",
+    "RelativePath": "api/User/GetUsersbyId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EComApi.Controllers.Admin.UserController",
+    "Method": "Update",
+    "RelativePath": "api/User/UpdateUserbyId/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "EComApi.Entity.DTO.User.UpdateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EComApi.Controllers.AccountController",
     "Method": "Authenticate",
     "RelativePath": "Login",
@@ -480,7 +924,7 @@
     "Parameters": [
       {
         "Name": "login",
-        "Type": "EComApi.Entity.DTO.LoginDto",
+        "Type": "EComApi.Entity.DTO.Security.LoginDto",
         "IsRequired": true
       }
     ],
@@ -496,7 +940,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "EComApi.Entity.DTO.RequestDto",
+        "Type": "EComApi.Entity.DTO.Security.RequestDto",
         "IsRequired": true
       }
     ],

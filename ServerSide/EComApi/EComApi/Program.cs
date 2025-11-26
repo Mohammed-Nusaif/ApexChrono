@@ -3,6 +3,7 @@ using EComApi.Services.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
@@ -10,7 +11,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//  debug code before building
+// ------------------------------------------------------
+// Razorpay Debug Logging
+// ------------------------------------------------------
 var tempConfig = builder.Configuration;
 var razorpayKey = tempConfig["Razorpay:Key"];
 var razorpaySecret = tempConfig["Razorpay:Secret"];
@@ -23,7 +26,6 @@ if (string.IsNullOrEmpty(razorpayKey) || string.IsNullOrEmpty(razorpaySecret))
 {
     Console.WriteLine("ERROR: Razorpay configuration is missing!");
 
-    // List all configuration values for debugging
     foreach (var config in tempConfig.AsEnumerable())
     {
         if (config.Key.Contains("Razorpay", StringComparison.OrdinalIgnoreCase))
@@ -41,10 +43,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngularApp", policy =>
     {
         policy.WithOrigins(
-            "http://localhost:4200",      // Angular default dev server
-            "https://localhost:4200",     // Angular with HTTPS
-            "http://localhost:64307",     // Your provided URL
-            "https://localhost:64307"     // Your provided URL with HTTPS
+            "http://localhost:4200",
+            "https://localhost:4200",
+            "http://localhost:64307",
+            "https://localhost:64307"
         )
         .AllowAnyHeader()
         .AllowAnyMethod()
@@ -145,179 +147,54 @@ builder.Services.AddSwaggerGen(c =>
 // ------------------------------------------------------
 var app = builder.Build();
 
-// SEED DATA CODE FOR PRODUCT
 // ------------------------------------------------------
-// SEED DATA
+// SEED DATA (Optional)
+// ------------------------------------------------------
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
     try
     {
-        // Check if we already have products (to avoid reseeding)
         if (!context.Products.Any())
         {
             var products = new List<Products>
             {
                 new Products
                 {
-                    Name = "Apple Watch Series 9",
-                    Price = 13999.00m,
-                    Stock = 50,
-                    Description = "Advanced smartwatch with Always-On Retina display, fitness tracking, and blood oxygen app",
-                    Category = "Smart Watches",
-                    Brand = "Apple",
-                    Color = "Midnight",
-                    ImageUrl = "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=400",
-                    DiscountPrice = 349.00m,
-                    Rating = 4.5m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = true
-                },
-                new Products
-                {
                     Name = "Samsung Galaxy Watch 6",
-                    Price = 7999.00m,
-                    Stock = 75,
-                    Description = "Premium smartwatch with advanced health monitoring, sleep coaching, and GPS tracking",
-                    Category = "Smart Watches",
                     Brand = "Samsung",
-                    Color = "Graphite",
-                    ImageUrl = "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
-                    DiscountPrice = 279.00m,
-                    Rating = 4.3m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = true
-                },
-                new Products
-                {
-                    Name = "Fitbit Versa 4",
-                    Price = 2299.95m,
-                    Stock = 100,
-                    Description = "Health & fitness smartwatch with built-in GPS, Active Zone Minutes, and 6+ days battery",
-                    Category = "Fitness Trackers",
-                    Brand = "Fitbit",
-                    Color = "Black",
-                    ImageUrl = "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400",
-                    DiscountPrice = 199.95m,
-                    Rating = 4.2m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = false
-                },
-                new Products
-                {
-                    Name = "Garmin Venu 2",
-                    Price = 3999.99m,
-                    Stock = 40,
-                    Description = "GPS smartwatch with AMOLED display, advanced health monitoring and fitness features",
                     Category = "Smart Watches",
-                    Brand = "Garmin",
-                    Color = "Slate",
-                    ImageUrl = "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400",
-                    Rating = 4.6m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = true
-                },
-                new Products
-                {
-                    Name = "Fossil Gen 6",
-                    Price = 2999.00m,
-                    Stock = 60,
-                    Description = "Smartwatch with Wear OS, heart rate tracking, GPS, and fast charging",
-                    Category = "Smart Watches",
-                    Brand = "Fossil",
-                    Color = "Smoke",
-                    ImageUrl = "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
-                    DiscountPrice = 249.00m,
-                    Rating = 4.1m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = true
-                },
-                new Products
-                {
-                    Name = "Amazfit GTS 4",
-                    Price = 1999.99m,
-                    Stock = 85,
-                    Description = "Ultra HD AMOLED display, 150+ sports modes, and 8-day battery life",
-                    Category = "Smart Watches",
-                    Brand = "Amazfit",
-                    Color = "Infinite Black",
-                    ImageUrl = "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=400",
-                    Rating = 4.0m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = true
-                },
-                new Products
-                {
-                    Name = "Withings ScanWatch",
-                    Price = 2799.95m,
-                    Stock = 30,
-                    Description = "Hybrid smartwatch with medical-grade ECG and overnight oximetry",
-                    Category = "Health Monitors",
-                    Brand = "Withings",
-                    Color = "Black",
-                    ImageUrl = "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400",
-                    Rating = 4.4m,
-                    HasGPS = false,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = false
-                },
-                new Products
-                {
-                    Name = "Huawei Watch GT 3",
-                    Price = 2299.99m,
-                    Stock = 65,
-                    Description = "2-week battery life, TruSeen 5.0+ heart rate monitoring, and 100+ workout modes",
-                    Category = "Smart Watches",
-                    Brand = "Huawei",
-                    Color = "Active Black",
-                    ImageUrl = "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
-                    DiscountPrice = 199.99m,
-                    Rating = 4.2m,
-                    HasGPS = true,
-                    HasHeartRate = true,
-                    HasSleepTracking = true,
-                    HasBluetooth = true,
-                    HasWaterResistance = true,
-                    HasNFC = true
+                    Description = "Premium smartwatch with advanced health tracking, sleep analysis, and AMOLED display.",
+                    BasePrice = 34999.00m,
+                    DiscountPrice = 29999.00m,
+                    Rating = 4.5m,
+                    ThumbnailUrl = "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
+                    ImageUrls = new List<string>
+                    {
+                        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400",
+                        "https://images.unsplash.com/photo-1623479322729-28b26dfdc1d8?w=400",
+                        "https://images.unsplash.com/photo-1621418105239-c512b9d20a23?w=400"
+                    },
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant { Color = "Graphite", Price = 34999.00m, Stock = 40 },
+                        new ProductVariant { Color = "Silver", Price = 34999.00m, Stock = 25 },
+                        new ProductVariant { Color = "Rose Gold", Price = 35999.00m, Stock = 15 }
+                    },
+                    CreatedDate = DateTime.UtcNow,
+                    IsActive = true
                 }
             };
 
             context.Products.AddRange(products);
             await context.SaveChangesAsync();
 
-            Console.WriteLine("✅ Database seeded with 8 smart watch products!");
+            Console.WriteLine("✅ Database seeded with products");
         }
         else
         {
-            Console.WriteLine("ℹ️  Products already exist in database. Skipping seeding.");
+            Console.WriteLine("ℹ️ Products already exist. Skipping seeding.");
         }
     }
     catch (Exception ex)
@@ -327,22 +204,34 @@ using (var scope = app.Services.CreateScope())
 }
 
 // ------------------------------------------------------
-// 8. Middleware Pipeline - ADD CORS MIDDLEWARE
+// 8. Middleware Pipeline
 // ------------------------------------------------------
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 
-// Use CORS middleware
+// ⭐ FIX IMAGE PROBLEM: Serve static files from wwwroot
+app.UseStaticFiles();
+// Serve /uploads/products from backend
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "products")
+    ),
+    RequestPath = "/uploads/products"
+});
+
+
 app.UseCors("AllowAngularApp");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ECom API v1");
+    c.RoutePrefix = "swagger";
+});
 
+app.MapControllers();
 app.Run();

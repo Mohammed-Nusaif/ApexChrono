@@ -1,5 +1,5 @@
 ﻿using EComApi.Common.Common.DTO;
-using EComApi.Entity.DTO;
+using EComApi.Entity.DTO.Payment;
 using EComApi.Entity.Models;
 
 namespace EComApi.Services.Services
